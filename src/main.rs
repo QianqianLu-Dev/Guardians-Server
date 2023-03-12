@@ -1,8 +1,10 @@
 use axum::{
     routing::{get, post},
     Router,
-};
+    Json,
+    extract::{Extension, Path},
 
+};
 
 
 
@@ -10,8 +12,8 @@ use axum::{
 async fn main() {
     // build our application with a single route
 
-
     let app = init_routers();
+
     // run it with hyper on localhost:3000
     axum::Server::bind(&"0.0.0.0:3000".parse().unwrap())
         .serve(app.into_make_service())
